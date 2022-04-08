@@ -5,3 +5,13 @@ using Quadrature with Extrapolation technique
 For compiling and running the program, please see the INSTALL.txt file.
 
 For guideline detail, please have a look at the manusript in /doc folder
+
+List of currently supported features:
++ Cartesian coordinate system.
++ Computes all electromagnetic fields' x, y, and z-components.
++ Supports computation of both real and imaginary components of the fields.
++ Transmitters and receivers can be located anywhere.
++ Supports both electric and magnetic dipoles.
++ Arbitrarily oriented transmitter.
++ Isotropic resistivity.
++ Supports computation for various frequencies at once.
