@@ -1,0 +1,7 @@
+1DCSEMQWE:
+An Open-Source 1D Forward Modeling Program for Controlled-Source Electromagnetic Method
+using Quadrature with Extrapolation technique
+
+For compiling and running the program, please see the INSTALL.txt file.
+
+For guideline detail, please have a look at the manusript in /doc folder
