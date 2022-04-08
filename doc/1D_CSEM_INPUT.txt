@@ -1,0 +1,52 @@
+!For compiling: g++ -I /path/to/installed_boost_folder CSEM_1D_FORWARD.cc GET_CSEM1D_FD_QWE.cpp Prms.cpp QGauss.cpp Run1DCSEM.cpp output_1D_CSEM_solution.cpp
+!An example with boost version 1.78.0 is:
+! g++ -I /home/local/boost_1_78_0 CSEM_1D_FORWARD.cc GET_CSEM1D_FD_QWE.cpp Prms.cpp QGauss.cpp Run1DCSEM.cpp output_1D_CSEM_solution.cpp 
+
+# DIPOLE TYPE: 0	 !Types: 0,1 are electric dipole source, magnetic dipole source, respectively.
+
+# NQUAD: 101   !Number of quadrature points to evaluate the integral
+
+# RTOL: 1e-12  !Relative tolerance for convergence criteria of the QWE technique, default 1e-12
+
+# ATOL: 1e-30  !Absolute tolerance for convergence criteria of the QWE technique, default 1e-30
+
+! This section lists the number of transmitters and then their parameters 
+! The azimuth ranges from [0, 360], being 0 in x-direction 
+! and has positive value w.r.t counter clockwise direction.
+! The dip ranges from [-90, 90] degrees with -90 is upward direction and vise versa
+!X	    Y		Z	Moment Azimuth 	    Dip 
+# TRANSMITTERS: 11  	 
+ 0           0         950          1	90           0       							    
+ 0        1000         950          1	90           0                   
+ 0        2000         950          1	90           0
+ 0        3000         950          1	90           0
+ 0        4000         950          1	90           0
+ 0        5000         950          1	90           0
+ 0        6000         950          1	90           0
+ 0        7000         950          1	90           0
+ 0        8000         950          1	90           0
+ 0        9000         950          1	90           0
+ 0       10000         950          1	90           0 
+
+! This section lists the number of freqs, and then their values.
+# FREQUENCIES:     2	
+   0.25
+   1.0
+
+ ! This section gives the number of layers, their top depths, and resistivities (ohm-m).  
+ ! Air layer (10^12 ohm-m)    
+ ! Seawater layer, extending from 0 - 1000 m depth.  
+ ! The first seafloor layer, extending from 1000-2000 m depth.
+ ! A reservoir of 100 m thick, 100 ohm-m layer at 2000-2100 m depth.
+ ! The first seafloor layer, extending from 1000-2000 m depth.
+# LAYERS:         5     
+-1e-150 1e12           
+ 0     .30             
+1000    1.0           
+2000    100            
+2100    1.0      	
+                         		 
+! This section lists the number of receivers, and then their positions in x,y,z coordinates.
+# RECEIVERS:      1    
+  0          0        1000 
+

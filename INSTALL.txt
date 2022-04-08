@@ -1,0 +1,81 @@
+Guidline for compiling and running the program
+
+1. 1DCSEMQWE program has been tested on linux machine, ubuntu system version 18.04 or newer.
+For users who do not work with unbuntu 18.04 and newer, we recommend updating g++ compiler
+#you have to make sure that the libraries gcc and libstdc++ are upgraded to their latest versions
+ 
+#On Ubuntu that is rather trivial. First, look if they are already installed by the commands:
+apt list --installed gcc-10*
+apt list --installed g++-10
+apt list --installed libstdc++-10*
+
+#If not, first check if they are available to apt:
+sudo apt-get update
+apt list libstdc++-10*
+apt list gcc-10*
+apt list g++-10*
+
+#If you do not find the packages, you might need to run the following commands to add the Ubuntu Toolchain repository:
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt-get update
+
+#Once updated the apt, you can install them with the following command:
+
+sudo apt install gcc-10 gcc-10-base gcc-10-doc g++-10
+
+
+2. Install third party library boost
+The project website is www.boost.org, where you can obtain more information and
+[download](https://www.boost.org/users/download/) the current release.
+We recommend visiting the website for installation guide.
+
+An example of installing boost version 1.78.0 on Linux:
+#command to unzip the downloaded file
+tar -xf boost_1_78_0.tar.gz boost_1_78_0/
+
+#command to change the current directory to extracted boost folder
+cd boost_1_78_0/
+
+#command to see the options for boost configuration
+./bootstrap.sh --help
+
+#command to configure boost
+./bootstrap.sh
+
+#command to install boost library
+./b2
+
+You should keep track the /lib and /include folder of the boost library at the end of the installation
+
+#After that you may want to export the path to the boost library as follow 
+export LIBRARY_PATH=/path/to/boost_1_78_0/stage/lib
+
+NOTE: /path/to/boost_1_78_0/stage/lib has been printed on the screen at the end of the installation of boost.
+
+
+3. Compiling and running the program by the following commands:
+#For compile the program
+- open a terminal (on Linux by crtl+Alt+T, on windows-subsystem-linux: open a terminal that you linux subsystem running) 
+- change the current directory to .../1D_CSEM_QWE_PROGRAM/src (by cd command)
+- type in the terminal the following command to compile the program
+
+#For compiling: 
+g++ -I /path/to/installed_boost_folder CSEM_1D_FORWARD.cc GET_CSEM1D_FD_QWE.cpp Prms.cpp QGauss.cpp Run1DCSEM.cpp output_1D_CSEM_solution.cpp
+
+#An example with boost version 1.78.0 is:
+g++ -I /home/local/boost_1_78_0 CSEM_1D_FORWARD.cc GET_CSEM1D_FD_QWE.cpp Prms.cpp QGauss.cpp Run1DCSEM.cpp output_1D_CSEM_solution.cpp 
+
+#The above command wil produce an executable file name a.out.
+
+#input file: 1D_CSEM_INPUT.txt
+
+#To run the program, you need to type in the terminal:
+./a.out
+
+#output files: TX_RX_configurations.csv, model_parameters.csv, CSEM_1D_RESPONSES_at_frequency_index_1.csv, and other responses files at indices 2,3, and so on.
+
+#It is noted that we also successfully tested the code in the Windows Subsystem Linux, in which ubuntu 18.04 is installed.
+
+
+
+
